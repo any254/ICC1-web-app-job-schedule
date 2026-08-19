@@ -4,6 +4,7 @@ from config import Config
 from extensions import db, login_manager
 from datetime import datetime, timezone
 from dotenv import load_dotenv
+from azure.monitor.opentelemetry import configure_azure_monitor
 import os
 
 # Load environment variables from .env file
@@ -11,6 +12,7 @@ load_dotenv()
 
 # Initialise Flask application
 app = Flask(__name__)
+configure_azure_monitor()
 # Load configuration from Config class
 app.config.from_object(Config)
 
