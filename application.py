@@ -12,7 +12,11 @@ load_dotenv()
 
 # Initialise Flask application
 app = Flask(__name__)
-configure_azure_monitor()
+
+# Enable Application Insights monitoring only if the connection string is available
+if os.environ.get('APPLICATIONINSIGHTS_CONNECTION_STRING'):
+    configure_azure_monitor()
+
 # Load configuration from Config class
 app.config.from_object(Config)
 
